@@ -89,5 +89,5 @@ New `aws-exports.js` file should be created:
 
 ```
 ls src
-#
+# App.css          App.js           App.test.js      **aws-exports.js**   index.css        index.js         logo.svg         serviceWorker.js setupTests.js
 ```
