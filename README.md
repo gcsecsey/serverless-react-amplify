@@ -62,7 +62,7 @@ amplify init
 npm i -S aws-amplify aws-amplify-react
 ```
 
-# Add authentication
+# Adding authentication
 
 ```
 amplify add auth
@@ -90,4 +90,10 @@ New `aws-exports.js` file should be created:
 ```
 ls src
 # App.css          App.js           App.test.js      **aws-exports.js**   index.css        index.js         logo.svg         serviceWorker.js setupTests.js
+```
+
+## Testing authentication
+
+```
+npm start
 ```
