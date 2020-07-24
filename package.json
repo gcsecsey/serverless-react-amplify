@@ -1,0 +1,12 @@
+{
+  "name": "serverless-react-amplify",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "aws-amplify": "^3.0.21",
+    "aws-amplify-react": "^4.1.20",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  }
+}
