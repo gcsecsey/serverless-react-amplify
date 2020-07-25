@@ -5,6 +5,7 @@
 
 amplify configure
 ```
+
 ```
 Specify the AWS Region
 ? region:  # Your preferred region
@@ -21,11 +22,13 @@ This would update/create the AWS Profile in your local machine
 Successfully set up the new user.
 
 ```
+
 npx create-react-app my-amplify-app
 
 amplify init
 
 # amplify init steps
+
 ```
 
 > Note: It is recommended to run this command from the root of your app directory
@@ -53,13 +56,17 @@ amplify init
 > ? Please choose the profile you want to use **amplify-egghead-cli**
 
 ```
+
 npm i -S aws-amplify aws-amplify-react
+
 ```
 
 # Adding authentication
 
 ```
+
 amplify add auth
+
 ```
 
     Do you want to use the default authentication and security configuration? **Default configuration**
@@ -70,7 +77,9 @@ amplify add auth
 Push new configuration, provision resources:
 
 ```
+
 amplify push
+
 ```
 
 > | Category | Resource name        | Operation | Provider plugin   |
@@ -78,16 +87,46 @@ amplify push
 > | Auth     | reactamplifyc0315247 | Create    | awscloudformation |
 >
 > ? Are you sure you want to continue? **Yes**
+```
 
 New `aws-exports.js` file should be created:
 
 ```
+
 ls src
-# App.css          App.js           App.test.js      **aws-exports.js**   index.css        index.js         logo.svg         serviceWorker.js setupTests.js
+
+# App.css App.js App.test.js **aws-exports.js** index.css index.js logo.svg serviceWorker.js setupTests.js
+
 ```
 
 ## Testing authentication
 
 ```
+
 npm start
+
+```
+
+# Adding API
+
+```
+amplify add api
+
+```
+
+```
+
+? Please select from one of the below mentioned services: # GraphQL
+? Provide API name: # reactamplify
+? Choose the default authorization type for the API # API key
+? Enter a description for the API key: # reactamplifyapikey
+? After how many days from now the API key should expire (1-365): # 7
+? Do you want to configure advanced settings for the GraphQL API # No, I am done.
+? Do you have an annotated GraphQL schema? # No
+? Do you want a guided schema creation? # Yes
+? What best describes your project: # Single object with fields (e.g., “Todo” with ID, name, description)
+? Do you want to edit the schema now? Yes
+Please edit the file in your editor: # At this point, the schema can be modified
+? Press enter to continue
+
 ```
