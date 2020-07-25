@@ -4,23 +4,19 @@
 # serverless-react-amplifynpm i -g @aws/amplify
 
 amplify configure
-
-# IAM user setup
 ```
+```
+Specify the AWS Region
+? region:  # Your preferred region
+Specify the username of the new IAM user:
+? user name:  # User name for Amplify IAM user
+Complete the user creation using the AWS console
 
-    Specify the AWS Region
-    ? region: **eu-central-1**
-    Specify the username of the new IAM user:
-    ? user name: **amplify-egghead-cli**
-    Complete the user creation using the AWS console
-    https://console.aws.amazon.com/iam/home?region=undefined#/users$new?step=final&accessKey&userNames=amplify-egghead-cli&permissionType=policies&policies=arn:aws:iam::aws:policy%2FAdministratorAccess
-    Press Enter to continue
-
-    Enter the access key of the newly created user:
-    ? accessKeyId: ********\*\*\*\*********
-    ? secretAccessKey: ******************\*\*\*\*******************
-    This would update/create the AWS Profile in your local machine
-    ? Profile Name: **amplify-egghead-cli**
+Enter the access key of the newly created user:
+? accessKeyId: # YOUR_ACCESS_KEY_ID
+? secretAccessKey: # YOUR_SECRET_ACCESS_KEY
+This would update/create the AWS Profile in your local machine
+? Profile Name: # (default)
 
 Successfully set up the new user.
 
@@ -35,9 +31,7 @@ amplify init
 > Note: It is recommended to run this command from the root of your app directory
 >
 > ? Enter a name for the project **reactamplify**
->
 > ? Enter a name for the environment **dev**
->
 > ? Choose your default editor: **Visual Studio Code**
 >
 > ? Choose the type of app that you're building **javascript**
