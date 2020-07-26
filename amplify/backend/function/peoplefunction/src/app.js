@@ -37,11 +37,18 @@ app.use(function (req, res, next) {
 app.get('/people', function (req, res) {
   // Add your code here
 
-  const people = [
-    { name: 'Bela', hair_color: 'golden' },
-    { name: 'Cecil', hair_color: 'black' },
-  ];
-  res.json({ people });
+  const axios = require('axios');
+  axios
+    .get('https://swapi.dev/api/people/')
+    .then((response) => {
+      res.json({
+        error: null,
+        people: response.data.results,
+      });
+    })
+    .catch((error) => {
+      res.json({ error, people: null });
+    });
 });
 
 app.get('/people/*', function (req, res) {
