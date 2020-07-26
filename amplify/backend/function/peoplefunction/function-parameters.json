@@ -1,0 +1,22 @@
+{
+  "mutableParametersState": {
+    "permissions": {
+      "auth": {
+        "reactamplifyc0315247": [
+          "read"
+        ]
+      },
+      "api": {
+        "reactamplify": [
+          "read"
+        ]
+      },
+      "storage": {
+        "Todo:@model(appsync)": [
+          "read"
+        ]
+      }
+    }
+  },
+  "lambdaLayers": []
+}

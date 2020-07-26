@@ -1,72 +1,53 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { Auth } from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
+import { API, graphqlOperation } from 'aws-amplify';
 
-function App() {
-  const [componentState, setComponentState] = useState({
-    username: '',
-    password: '',
-    email: '',
-    phone_number: '',
-    authenticationCode: '',
-    step: 0,
-  });
-
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setComponentState({ ...componentState, [name]: value });
-  };
-
-  const signUp = async () => {
-    const { username, password, email, phone_number } = componentState;
-    try {
-      await Auth.signUp({
-        username,
-        password,
-        attributes: { email, phone_number },
-      });
-      console.log('successfully signed up');
-      setComponentState({ ...componentState, step: 1 });
-    } catch (err) {
-      console.log('error signing up: ', err);
+const ListTodos = `
+query {
+  listTodos {
+    items {
+      id
+      name
+      description
+      completed
     }
-  };
+  }
+}
+`;
 
-  const confirmSignUp = async () => {
-    const { username, authenticationCode } = componentState;
-    try {
-      await Auth.confirmSignUp(username, authenticationCode);
-      console.log('user successfully signed up!');
-    } catch (err) {
-      console.log('error confirming sign up: ', err);
-    }
-  };
+class App extends Component {
+  state = { todos: [] };
 
-  return (
-    <div className="App">
-      {componentState.step === 0 && (
-        <div>
-          <input onChange={onChange} placeholder="username" name="username" style={styles.input} />
+  async componentDidMount() {
+    const todoData = await API.graphql(graphqlOperation(ListTodos));
+    this.setState({ todos: todoData.data.ListTodos.items });
+  }
 
-          <input onChange={onChange} placeholder="password" name="password" style={styles.input} type="password" />
-          <input onChange={onChange} placeholder="email" name="email" style={styles.input} />
-          <input onChange={onChange} placeholder="phone_number" name="phone_number" style={styles.input} />
-          <button onClick={signUp}>Sign Up</button>
-        </div>
-      )}
-      {componentState.step === 1 && (
-        <div>
-          <input onChange={onChange} placeholder="username" name="username" style={styles.input} />
-          <input onChange={onChange} placeholder="authentication code" name="authenticationCode" style={styles.input} />
-          <button onClick={confirmSignUp}>Confirm Sign Up</button>
-        </div>
-      )}
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+            Learn React
+          </a>
+        </header>
+
+        {this.state.todos.map((todo, i) => (
+          <div>
+            <h3>{todo.name}</h3>
+            <p>{todo.description}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
-const styles = { input: { height: 35, margin: 10 } };
-
-export default App;
+export default withAuthenticator(App);

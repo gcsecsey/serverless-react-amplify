@@ -23,6 +23,44 @@
 					}
 				}
 			}
+		},
+		"peopleapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "peoplefunction",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	},
+	"function": {
+		"peoplefunction": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "auth",
+					"resourceName": "reactamplifyc0315247",
+					"attributes": [
+						"UserPoolId"
+					]
+				},
+				{
+					"category": "api",
+					"resourceName": "reactamplify",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			]
 		}
 	}
 }
